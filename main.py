@@ -18,11 +18,14 @@ def execucao_simples():
     jogadores = [Jogador("João"), Jogador("Maria"), Jogador("Bruna"), Jogador("Tales")]
 
     rodadas = 0
+    total_jogadores = 4
     while rodadas < MAXIMO_RODADAS:
         for jogador_ in jogadores:
             if jogador_.continuar_jogando():
-                jogador_.realizar_jogada(propriedades)
+                total_jogadores += jogador_.realizar_jogada(propriedades)
                 print("JOGADOR:", jogador_)
+        if total_jogadores < 2:
+            return "Jogo Terminado"
         rodada = jogador_.get_rodada()
         if rodada > rodadas:
             rodadas = rodada

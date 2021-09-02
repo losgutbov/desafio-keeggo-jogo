@@ -71,6 +71,8 @@ class Jogador():
         if self.desativar_jogador():
             for propriedade_ in propriedades:
                 propriedade_.remover_proprietario(self)
+            return -1
+        return 0
         
     
 
