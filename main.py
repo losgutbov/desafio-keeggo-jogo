@@ -1,3 +1,4 @@
+from definicoes import *
 from jogador import Jogador
 from propriedade import Propriedade
 
@@ -16,11 +17,15 @@ def execucao_simples():
     
     jogadores = [Jogador("João"), Jogador("Maria"), Jogador("Bruna"), Jogador("Tales")]
 
-    for simulacao in range(5):
-        for jog in jogadores:
-            if jog.continuar_jogando():
-                jog.realizar_jogada(propriedades)
-                print("JOGADOR:", jog)
+    rodadas = 0
+    while rodadas < MAXIMO_RODADAS:
+        for jogador_ in jogadores:
+            if jogador_.continuar_jogando():
+                jogador_.realizar_jogada(propriedades)
+                print("JOGADOR:", jogador_)
+        rodada = jogador_.get_rodada()
+        if rodada > rodadas:
+            rodadas = rodada
         print("----------------------------------------")
     
 

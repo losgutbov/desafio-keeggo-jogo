@@ -12,7 +12,7 @@ class Propriedade():
         return "Identificacao: "+str(self.identificacao) \
                 +" Custo de Venda: "+str(self.custo_venda) \
                 +" Valor do Aluguel: "+str(self.valor_aluguel) \
-                +" Proprietario Atual: " \
+                +" \n Proprietario Atual: " \
                     +str(self.proprietario if self.proprietario is not None else "-")
     
     def get_valor_aluguel(self):
