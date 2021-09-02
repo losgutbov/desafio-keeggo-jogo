@@ -4,12 +4,24 @@ from definicoes import *
 
 class Jogador():
     
-    def __init__(self):
+    def __init__(self, identificacao):
+        self.identificacao = identificacao
         self.saldo = 300
         self.casa_atual = 1
         self.rodada = 1
         self.ativo = True
     
+    def __str__(self):
+        return "Identificacao: "+str(self.identificacao) \
+                +" Status: "+str(self.ativo) \
+                +" Saldo: "+str(self.saldo) \
+                +" Casa Atual: "+str(self.casa_atual)
+
+    def continuar_jogando(self):
+        if self.ativo:
+            return True
+        return False
+
     def jogar_dado(self):
         return random.randint(1,6)
     
@@ -19,6 +31,7 @@ class Jogador():
 
     def pagar_aluguel(self, valor):
         self.saldo -= valor
+        self.desativar_jogador()
 
     def receber_aluguel(self, valor):
         self.saldo += valor
