@@ -40,19 +40,32 @@ def execucao_simples():
 
     return rodadas, vencedor
 
-
-if __name__ == "__main__":
+def execucao_completa():
     resultados = {"Impulsivo":0, "Exigente":0, "Cauteloso":0, "Aleatório":0}
     total_rodadas = 0
     timeout = 0 
     for n in range(MAXIMO_SIMULACOES):
         rodadas, ganhador = execucao_simples()
-        total_rodadas += rodadas
         if ganhador is not None:
             resultados[ganhador.comportamento] += 1
+            total_rodadas += rodadas
             print("Simulação:", n, "Rodadas:", rodadas, "Comportamento Vencedor:", ganhador.comportamento)
         else:
             timeout += 1
             print("Simulação:", n, "Rodadas:", rodadas, "Finalizado por Timeout")
 
-    print(resultados, total_rodadas, timeout)
+    print()
+    print("*****************Relatorio*****************")
+    print("Partidas finalizadas por timeout:", timeout)
+    print("Duracao media das partidas em rodadas:", int(total_rodadas/MAXIMO_SIMULACOES))
+    print("Porcentagem de vitorias por comportamentos:")
+    print("     Impulsivo:", round((resultados["Impulsivo"]/MAXIMO_SIMULACOES)*100, 2), "%")
+    print("     Exigente:", round((resultados["Exigente"]/MAXIMO_SIMULACOES)*100, 2), "%")
+    print("     Cauteloso:", round((resultados["Cauteloso"]/MAXIMO_SIMULACOES)*100, 2), "%")
+    print("     Aleatório:", round((resultados["Aleatório"]/MAXIMO_SIMULACOES)*100, 2), "%")
+    maior_vencedor = max(resultados, key=resultados.get)
+    print("O comportamento com mais vitorias foi:", maior_vencedor)
+
+
+if __name__ == "__main__":
+    execucao_completa()
