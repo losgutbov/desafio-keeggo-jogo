@@ -1,5 +1,9 @@
 from definicoes import *
 from jogador import Jogador
+from jogador_impulsivo import JogadorImpulsivo
+from jogador_exigente import JogadorExigente
+from jogador_cauteloso import JogadorCauteloso
+from jogador_aleatorio import JogadorAleatorio
 from propriedade import Propriedade
 
 
@@ -15,7 +19,8 @@ def execucao_simples():
                     Propriedade(17, 200, 130), Propriedade(18, 160, 75), \
                     Propriedade(19, 50, 10), Propriedade(20, 235, 100)]
     
-    jogadores = [Jogador("João"), Jogador("Maria"), Jogador("Bruna"), Jogador("Tales")]
+    jogadores = [JogadorImpulsivo("João"), JogadorExigente("Maria"), \
+                 JogadorCauteloso("Bruna"), JogadorAleatorio("Tales")]
 
     rodadas = 0
     total_jogadores = 4

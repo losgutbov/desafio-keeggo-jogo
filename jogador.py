@@ -37,7 +37,7 @@ class Jogador():
 
     def pagar_aluguel(self, valor):
         self.saldo -= valor
-        return valor if self.saldo >= 0 else valor-self.saldo
+        return valor if self.saldo >= 0 else self.saldo+valor
 
     def receber_aluguel(self, valor):
         self.saldo += valor
@@ -49,17 +49,7 @@ class Jogador():
         return False
 
     def acao_jogador(self, propriedade):
-        acao = "nada"
-        if propriedade.disponivel_para_compra():
-            if self.comprar_propriedade(propriedade.get_custo_venda()):
-                propriedade.novo_proprietario(self)
-                acao = "comprou"
-        elif propriedade.get_proprietario != self:
-            acao = "alugou"
-            valor_recebido = self.pagar_aluguel(propriedade.get_valor_aluguel())
-            propriedade.cobrar_aluguel(valor_recebido)
-            
-        print("++++++++++++", propriedade, acao)
+        pass
 
     def realizar_jogada(self, propriedades):
         self.casa_atual += self.jogar_dado()
