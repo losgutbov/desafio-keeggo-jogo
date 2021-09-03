@@ -24,19 +24,35 @@ def execucao_simples():
 
     rodadas = 0
     total_jogadores = 4
-    while rodadas < MAXIMO_RODADAS:
+    vencedor = None
+    while rodadas < MAXIMO_RODADAS and total_jogadores > 1:
         for jogador_ in jogadores:
             if jogador_.continuar_jogando():
                 total_jogadores += jogador_.realizar_jogada(propriedades)
-                print("JOGADOR:", jogador_)
-        if total_jogadores < 2:
-            return "Jogo Terminado"
-        rodada = jogador_.get_rodada()
-        if rodada > rodadas:
-            rodadas = rodada
-        print("----------------------------------------")
+            rodada = jogador_.get_rodada()
+            if rodada > rodadas:
+                rodadas = rodada
     
+    if total_jogadores == 1:
+        for jogador_ in jogadores:
+            if jogador_.get_status():
+                vencedor = jogador_
+
+    return rodadas, vencedor
 
 
 if __name__ == "__main__":
-    execucao_simples()
+    resultados = {"Impulsivo":0, "Exigente":0, "Cauteloso":0, "Aleatório":0}
+    total_rodadas = 0
+    timeout = 0 
+    for n in range(MAXIMO_SIMULACOES):
+        rodadas, ganhador = execucao_simples()
+        total_rodadas += rodadas
+        if ganhador is not None:
+            resultados[ganhador.comportamento] += 1
+            print("Simulação:", n, "Rodadas:", rodadas, "Comportamento Vencedor:", ganhador.comportamento)
+        else:
+            timeout += 1
+            print("Simulação:", n, "Rodadas:", rodadas, "Finalizado por Timeout")
+
+    print(resultados, total_rodadas, timeout)

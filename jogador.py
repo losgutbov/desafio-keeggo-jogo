@@ -10,6 +10,7 @@ class Jogador():
         self.casa_atual = 0
         self.rodada = 1
         self.ativo = True
+        self.comportamento = None
     
     def __str__(self):
         return "Identificacao: "+str(self.identificacao) \
@@ -18,6 +19,9 @@ class Jogador():
                 +" Casa Atual: "+str(self.casa_atual) \
                 +" Rodada: "+str(self.rodada) 
 
+    def get_status(self):
+        return self.ativo
+    
     def get_rodada(self):
         return self.rodada
     
@@ -64,6 +68,8 @@ class Jogador():
             return -1
         return 0
         
+    def comportamento(self):
+        return self.comportamento
     
 
     
